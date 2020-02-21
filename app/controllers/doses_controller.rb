@@ -1,19 +1,30 @@
 class DosesController < ApplicationController
-  def description
+  # def new
+  #   @cocktail = Cocktail.find(params[:cocktail_id])
+  #   @dose = Dose.new
+  # end
+
+  def create
+    @cocktail = Cocktail.find(params[:cocktail_id])
+    @dose = Dose.new(dose_params)
+    @dose.cocktail = @cocktail
+    if @dose.save
+      redirect_to cocktail_path(@cocktail)
+    else
+      # @review = Review.new
+      render :new
+    end
+  end
+
+  def destroy
+    @dose = Dose.find(params[:id])
+    @dose.destroy
+    redirect_to cocktail_path(@dose.cocktail)
+  end
+
+  private
+
+  def dose_params
+    params.require(:dose).permit(:description, :ingredient_id)
   end
 end
-
-
-# DosesController
-#   GET new
-#     assigns a new dose as @dose (FAILED - 9)
-#   POST create
-#     with valid params
-#       creates a new Dose (FAILED - 10)
-#       assigns a newly created dose as @dose (FAILED - 11)
-#       redirects to the created dose (FAILED - 12)
-#     with invalid params
-#       assigns a newly created but unsaved dose as @dose (FAILED - 13)
-#       re-renders the 'new' template (FAILED - 14)
-#   DELETE destroy
-#     deletes a Dose (FAILED - 15)
