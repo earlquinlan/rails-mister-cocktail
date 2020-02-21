@@ -2,3 +2,11 @@
 @import "alert";
 @import "avatar";
 @import "navbar";
+
+.row {
+  height: 450px;
+  width: 600pxpx;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  text-color: #F4F4F4;;
+}
