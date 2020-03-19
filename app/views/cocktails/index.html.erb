@@ -1,15 +1,10 @@
-<!-- <div class="home-banner">
-  <h1>
-  <span id="banner-typed-text"></span>
-  </h1>
-</div>  -->
 
 <div class="container p-5">
   <div class="row justify-content-around">
     <% @cocktails.each do |cocktail| %>
     <div class="card-product m-1 col-lg-3 col-md-4 col-sm-12">
-      <%= cl_image_tag cocktail.photo.key%>
-      <%= #link_to(cocktail.name, cocktail_path(cocktail)) %>
+
+      <%= link_to(cocktail.name, cocktail_path(cocktail)) %>
     </div>
     <% end %>
   </div>
